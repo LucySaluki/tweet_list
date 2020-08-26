@@ -82,7 +82,8 @@ export default {
   methods: {
     saveTweet: function() {
       this.tweets.unshift(this.newTweet);
-      this.newTweet.id=this.tweets.length;
+      this.newTweet.id=this.tweets.reduce(function(prev,curr) {
+        return prev.id < curr.id ? prev.id : curr.id;}) + 1;
 
       this.newTweet = {
         name:"",
